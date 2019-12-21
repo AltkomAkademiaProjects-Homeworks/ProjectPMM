@@ -5,5 +5,4 @@ function mathTest() {
     console.log(date.getFullYear());
 }
 
-
-
+//djaodjsa
