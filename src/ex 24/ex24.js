@@ -4,7 +4,7 @@ class Person {
         this.surname = surname;
         this.age = age;
     }
-
+// gra w klasy
     displayNameAndSurname() {
         console.log("Imie: " + this.name + " Nazwisko: " + this.surname);
     }
