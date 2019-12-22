@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="text" id="nameInput" onchange="myFunction()">
+<p id="demo"></p>
+
+<script>
+
+    var counter = 0;
+
+    function myFunction() {
+        document.getElementById("nameInput").value =
+            document.getElementById("nameInput").value.toUpperCase();
+
+        document.getElementById("demo").innerHTML =
+            document.getElementById("nameInput").value.toUpperCase();
+
+        if (counter % 2 == 0) {
+            document.getElementById("demo").style.color = "red";
+        } else {
+            document.getElementById("demo").style.color = "blue";
+        }
+        counter++;
+
+    }
+</script>
+</body>
+</html>
