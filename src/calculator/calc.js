@@ -6,7 +6,10 @@ const calculator = {
 };
 
 function inputDigit(digit) {
-    const { displayValue, waitingForSecondOperand } = calculator;
+    const {
+        displayValue,
+        waitingForSecondOperand
+    } = calculator;
 
     if (waitingForSecondOperand === true) {
         calculator.displayValue = digit;
@@ -27,10 +30,14 @@ function inputDecimal(dot) {
 }
 
 function handleOperator(nextOperator) {
-    const { firstOperand, displayValue, operator } = calculator
+    const {
+        firstOperand,
+        displayValue,
+        operator
+    } = calculator
     const inputValue = parseFloat(displayValue);
 
-    if (operator && calculator.waitingForSecondOperand)  {
+    if (operator && calculator.waitingForSecondOperand) {
         calculator.operator = nextOperator;
         return;
     }
@@ -58,7 +65,9 @@ const performCalculation = {
 
     '-': (firstOperand, secondOperand) => firstOperand - secondOperand,
 
-    '=': (firstOperand, secondOperand) => secondOperand
+    '=': (firstOperand, secondOperand) => secondOperand,
+
+    '%': (firstOperand, secondOperand) => firstOperand % secondOperand
 };
 
 function resetCalculator() {
@@ -77,7 +86,9 @@ updateDisplay();
 
 const keys = document.querySelector('.calculator-keys');
 keys.addEventListener('click', (event) => {
-    const { target } = event;
+    const {
+        target
+    } = event;
     if (!target.matches('button')) {
         return;
     }
@@ -103,3 +114,34 @@ keys.addEventListener('click', (event) => {
     inputDigit(target.value);
     updateDisplay();
 });
+
+document.onkeypress = function (event) {
+    const key = event.key;
+
+
+    if (typeof key == 'number') {
+        inputDigit(key);
+        updateDisplay();
+        return;
+    }
+
+    if (key == "+" || key == "-" || key == "*" || key == "/" || key == "%" || key == "=") {
+        handleOperator(key);
+        updateDisplay();
+        return;
+    }
+
+    if (key == "Enter") {
+        handleOperator("=");
+        updateDisplay();
+        return;
+    }
+
+    if (isNaN(key)) {
+        return;
+    }
+
+    inputDigit(key);
+    updateDisplay();
+
+};
